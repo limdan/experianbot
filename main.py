@@ -50,7 +50,7 @@ async def main():
     finally:
         if client.is_connected():
             logger.info("Disconnecting Telegram client.")
-            await client.disconnect()
+            await client.disconnect() # type: ignore
 
 if __name__ == '__main__':
     try:
