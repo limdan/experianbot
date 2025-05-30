@@ -37,12 +37,12 @@ def get_secret(service_id: str, username: str = 'default_user') -> str | None:
     try:
         secret = keyring.get_password(service_id, username)
         if secret:
-            logging.info(f"Successfully retrieved secret for service: {service_id}")
+            logging.info(f"Secret for service '{service_id}' retrieved successfully.")  # Do not log the secret itself
         else:
-            logging.warning(f"Secret not found in keyring for service: {service_id}")
+            logging.warning(f"Secret for service '{service_id}' not found in keyring.")
         return secret
     except Exception as e:
-        logging.error(f"Error retrieving secret for service {service_id} from keyring: {e}")
+        logging.error(f"Error retrieving secret for service '{service_id}' from keyring: {e}")
         return None
 
 def set_secret(service_id: str, secret: str, username: str = 'default_user'):
@@ -51,6 +51,6 @@ def set_secret(service_id: str, secret: str, username: str = 'default_user'):
     """
     try:
         keyring.set_password(service_id, username, secret)
-        logging.info(f"Successfully set secret for service: {service_id}")
+        logging.info(f"Secret for service '{service_id}' set successfully.")  # Do not log the secret itself
     except Exception as e:
-        logging.error(f"Error setting secret for service {service_id} in keyring: {e}")
+        logging.error(f"Error setting secret for service '{service_id}' in keyring: {e}")
